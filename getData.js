@@ -10,6 +10,6 @@ export async function getData(url) {
   
     const data = await fetch(url, options);
     const response = await data.json();
-    const movieList = response.results;
+    const movieList = response;
     return movieList;
 }

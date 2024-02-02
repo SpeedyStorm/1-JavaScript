@@ -12,8 +12,8 @@ function plus1Page() {
 
 function getTrendMovies() {
 	getData(`https://api.themoviedb.org/3/movie/popular?language=fr-US&page=${nbPage}`)
-    .then((movies) => {
-        render(movies)
+    .then((moviesList) => {
+        render(moviesList.results)
     })
     .catch((error) => {
         alert("La requête n'a pas abouti")
@@ -37,7 +37,7 @@ function render(movieList) {
 		dateSortie.textContent = movieObject.release_date
 
 		const lien = document.createElement("a")
-		lien.setAttribute('href', 'movie.html')
+		lien.setAttribute('href', `movie.html?id=${movieObject.id}`)
 
 		lien.appendChild(imgDOM)
     	lien.appendChild(itemTitle)
@@ -46,5 +46,4 @@ function render(movieList) {
 
     	list?.appendChild(item);
   	});
-	console.log(movieList)
 }

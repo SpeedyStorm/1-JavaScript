@@ -22,10 +22,10 @@ function plus1Page() {
 	getmovieSearch(nameMovie, false);
 }
 
-async function getmovieSearch(movieName, wantRemove) {
+function getmovieSearch(movieName, wantRemove) {
     getData(`https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=fr&page=${nbPage}`)
     .then((movieList) => {
-        render(movieList, wantRemove)
+        render(movieList.results, wantRemove)
     })
     .catch((error) => {
         alert("La requête n'a pas abouti")
@@ -66,7 +66,7 @@ function render(movieList, wantRemove) {
             imgDOM.setAttribute('src', imgUrl)
             
             const lien = document.createElement("a")
-		    lien.setAttribute('href', 'movie.html')
+		    lien.setAttribute('href', `movie.html?id=${movieObject.id}`)
 
             lien.appendChild(imgDOM)
             lien.appendChild(itemTitle)
@@ -74,6 +74,5 @@ function render(movieList, wantRemove) {
 
             list?.appendChild(item);
         });
-        console.log(movieList)
     }
 }
