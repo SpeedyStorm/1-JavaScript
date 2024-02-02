@@ -64,9 +64,13 @@ function render(movieList, wantRemove) {
             const imgDOM = document.createElement("img")
             const imgUrl = "https://image.tmdb.org/t/p/w500" + movieObject.poster_path
             imgDOM.setAttribute('src', imgUrl)
+            
+            const lien = document.createElement("a")
+		    lien.setAttribute('href', 'movie.html')
 
-            item.appendChild(imgDOM)
-            item.appendChild(itemTitle)
+            lien.appendChild(imgDOM)
+            lien.appendChild(itemTitle)
+            item.appendChild(lien)
 
             list?.appendChild(item);
         });

@@ -36,9 +36,13 @@ function render(movieList) {
 		const dateSortie = document.createElement("p")
 		dateSortie.textContent = movieObject.release_date
 
-		item.appendChild(imgDOM)
-    	item.appendChild(itemTitle)
-		item.appendChild(dateSortie)
+		const lien = document.createElement("a")
+		lien.setAttribute('href', 'movie.html')
+
+		lien.appendChild(imgDOM)
+    	lien.appendChild(itemTitle)
+		lien.appendChild(dateSortie)
+		item.appendChild(lien)
 
     	list?.appendChild(item);
   	});
