@@ -1,0 +1,46 @@
+import {getData} from "./getData.js";
+
+let nbPage = 1;
+let buttonPage = document.getElementById("button-page")
+buttonPage.addEventListener("click", plus1Page)
+getTrendMovies()
+
+function plus1Page() {
+	nbPage ++;
+	getTrendMovies()
+}
+
+function getTrendMovies() {
+	getData(`https://api.themoviedb.org/3/movie/popular?language=fr-US&page=${nbPage}`)
+    .then((movies) => {
+        render(movies)
+    })
+    .catch((error) => {
+        alert("La requête n'a pas abouti")
+  	})
+}
+
+function render(movieList) {
+	const list = document.querySelector("#movie-list");
+
+  	movieList.forEach((movieObject) => {
+    	const item = document.createElement("li")
+
+    	const itemTitle = document.createElement("h3")
+    	itemTitle.textContent = movieObject.title
+
+    	const imgDOM = document.createElement("img")
+    	const imgUrl = "https://image.tmdb.org/t/p/w500" + movieObject.poster_path
+    	imgDOM.setAttribute('src', imgUrl)
+		
+		const dateSortie = document.createElement("p")
+		dateSortie.textContent = movieObject.release_date
+
+		item.appendChild(imgDOM)
+    	item.appendChild(itemTitle)
+		item.appendChild(dateSortie)
+
+    	list?.appendChild(item);
+  	});
+	console.log(movieList)
+}

@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+  font-size: 3.5rem;
+  line-height: 1.5;
+  color: rgb(102, 102, 102);
+  margin: 0;
+  margin-bottom: 3rem;
+}
+
+.container {
+  width: 1200px;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
