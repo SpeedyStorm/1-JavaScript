@@ -1,14 +1,7 @@
 import {getData} from "./getData.js";
 
 let nbPage = 1;
-let buttonPage = document.getElementById("button-page")
-buttonPage.addEventListener("click", plus1Page)
 getTrendMovies()
-
-function plus1Page() {
-	nbPage ++;
-	getTrendMovies()
-}
 
 function getTrendMovies() {
 	getData(`https://api.themoviedb.org/3/movie/popular?language=fr-US&page=${nbPage}`)
@@ -47,3 +40,13 @@ function render(movieList) {
     	list?.appendChild(item);
   	});
 }
+
+window.addEventListener("scroll", (e) => {
+	const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+	const scrolledDistance = window.scrollY;
+
+	if (scrolledDistance >= scrollableHeight * 0.99) {
+		nbPage ++;
+		getTrendMovies();
+	}
+})

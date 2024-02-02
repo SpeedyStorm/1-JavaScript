@@ -7,8 +7,6 @@ searchForm.addEventListener("submit", (e) => {
 
 const list = document.querySelector("#list");
 const input = document.querySelector("#input");
-let buttonPage = document.getElementById("button-page")
-buttonPage.addEventListener("click", plus1Page)
 let nbPage = 1
 let nameMovie
 
@@ -17,13 +15,8 @@ input.addEventListener("keyup", (e) => {
     getmovieSearch(nameMovie, true);
 });
 
-function plus1Page() {
-	nbPage ++;
-	getmovieSearch(nameMovie, false);
-}
-
-function getmovieSearch(movieName, wantRemove) {
-    getData(`https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=fr&page=${nbPage}`)
+function getmovieSearch(nameMovie, wantRemove) {
+    getData(`https://api.themoviedb.org/3/search/movie?query=${nameMovie}&include_adult=false&language=fr&page=${nbPage}`)
     .then((movieList) => {
         render(movieList.results, wantRemove)
     })
@@ -47,14 +40,12 @@ function render(movieList, wantRemove) {
         list.removeChild(messageRemove)
     }
     if (movieList.length == 0) {
-        buttonPage.style.display = "none"
         const messageNoResult = document.createElement("p")
         messageNoResult.setAttribute('id', "messageNoResult")
 		messageNoResult.textContent = "Aucun résultat"
         list.appendChild(messageNoResult)
     }
     else {
-        buttonPage.style.display = "block"
         movieList.forEach((movieObject) => {
             const item = document.createElement("li")
 
@@ -76,3 +67,13 @@ function render(movieList, wantRemove) {
         });
     }
 }
+
+window.addEventListener("scroll", (e) => {
+	const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+	const scrolledDistance = window.scrollY;
+
+	if (scrolledDistance >= scrollableHeight * 0.99) {
+		nbPage ++;
+		getmovieSearch(nameMovie, false);
+	}
+})
