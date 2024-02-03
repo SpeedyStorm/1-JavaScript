@@ -26,6 +26,10 @@ function render(movie) {
     const imgUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path
     imgDOM.setAttribute('src', imgUrl)
 
+    const resume = document.createElement("p")
+    resume.textContent = movie.overview
+
     divContainer.appendChild(imgDOM)
     divContainer.appendChild(itemTitle)
+    divContainer.appendChild(resume)
 }
