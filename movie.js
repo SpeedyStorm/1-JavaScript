@@ -3,7 +3,7 @@ import {getData} from "./getData.js";
 const divContainerMovie = document.querySelector(".container-film")
 const divContainerReviews = document.querySelector(".container-reviews")
 
-const movieId = new URLSearchParams(window.location.search).get('id');
+const movieId = new URLSearchParams(window.location.search).get('id')
 getmovieId(movieId)
 getReview(movieId, "fr")
 
@@ -73,6 +73,8 @@ function renderReviews(listeReview, langue) {
     }
 
     listeReview.forEach((review) => {
+        const divOneReview = document.createElement("div") 
+
         let pictureAuthor;
         if (review.author_details.avatar_path != null) {
             pictureAuthor = document.createElement("img")
@@ -93,9 +95,10 @@ function renderReviews(listeReview, langue) {
         const contentReview = document.createElement("p")
         contentReview.textContent = review.content.replace(/\*\*/g, '').replace(/<em>/g, '').replace(/<\/em>/g, '')
 
-        divContainerReviews.appendChild(datePubli)
-        divContainerReviews.appendChild(pictureAuthor)
-        divContainerReviews.appendChild(nameAuthor)
-        divContainerReviews.appendChild(contentReview)
+        divOneReview.appendChild(datePubli)
+        divOneReview.appendChild(pictureAuthor)
+        divOneReview.appendChild(nameAuthor)
+        divOneReview.appendChild(contentReview)
+        divContainerReviews.appendChild(divOneReview)
     })
 }

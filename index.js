@@ -1,15 +1,31 @@
 import {getData} from "./getData.js";
-import {authentification} from "./authentification.js";
+import {authentification, createSessionId} from "./authentification.js";
 
-let lienHover = false
-const lienConnexion = document.querySelector(".lien-connexion")
-lienConnexion.addEventListener("mouseenter", (e) => {
-	if (lienHover == false) {
-		authentification()
-		lienHover = true}})
-
-let nbPage = 1;
+let nbPage = 1
+let sessionId
 getTrendMovies()
+InitialisationSession()
+
+function InitialisationSession() {
+	if (localStorage.getItem("sessionId") == "undefined" || localStorage.getItem("sessionId") == undefined) {
+		let requestToken = new URLSearchParams(window.location.search).get('request_token')
+		if (requestToken == null) {
+			authentification()}
+		getSessionId(requestToken)}
+	else {
+		sessionId = localStorage.getItem("sessionId")}
+}
+
+function getSessionId(requestToken) {
+	createSessionId(requestToken)
+    .then((dataSession) => {
+		sessionId = dataSession.session_id
+        localStorage.setItem("sessionId", sessionId)
+    })
+    .catch((error) => {
+        alert("La requête n'a pas abouti")
+  	})
+}
 
 function getTrendMovies() {
 	getData(`https://api.themoviedb.org/3/movie/popular?language=fr-US&page=${nbPage}`)
