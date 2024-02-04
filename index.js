@@ -1,4 +1,12 @@
 import {getData} from "./getData.js";
+import {authentification} from "./authentification.js";
+
+let lienHover = false
+const lienConnexion = document.querySelector(".lien-connexion")
+lienConnexion.addEventListener("mouseenter", (e) => {
+	if (lienHover == false) {
+		authentification()
+		lienHover = true}})
 
 let nbPage = 1;
 getTrendMovies()

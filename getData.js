@@ -1,10 +1,10 @@
-export async function getData(url) {
+export async function getData(url, methodUse = 'GET') {
     const options = {
-      	method: "GET",
+      	method: methodUse,
       	headers: {
         	accept: "application/json",
         	Authorization:
-        	"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNmI1MWU2NGJlMGYyZDMxNTVkMDY1MzhkMDIwZDY1ZSIsInN1YiI6IjY1YWZlMDE2NjdiNjEzMDBhZmYwYWExNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WUZZEs8jWJ1tRQP6qfymeUxyyTh5EpMOF1gxvRm_2MI",
+        	"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2U0ZWY3NWM3ZGRkMDYzMDUwMDgyOTUyZDUyYzU2MyIsInN1YiI6IjY1YjIxODk5MWM2MzI5MDE2YjkzNWM4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.p8GldhwVDjEYFE1AFTzvQEk2hTaMmUANTWFBcZnvuYg",
       	},
     };
   

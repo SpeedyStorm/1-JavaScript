@@ -3,11 +3,9 @@ import {getData} from "./getData.js";
 const divContainerMovie = document.querySelector(".container-film")
 const divContainerReviews = document.querySelector(".container-reviews")
 
-document.addEventListener('DOMContentLoaded', (e) => {
-    const movieId = new URLSearchParams(window.location.search).get('id');
-    getmovieId(movieId)
-    getReview(movieId, "fr")
-});
+const movieId = new URLSearchParams(window.location.search).get('id');
+getmovieId(movieId)
+getReview(movieId, "fr")
 
 function getmovieId(movieId) {
     getData(`https://api.themoviedb.org/3/movie/${movieId}?language=fr`)
@@ -69,7 +67,7 @@ function renderMovie(movie) {
 function renderReviews(listeReview, langue) {
     let MessageNoFr;
     if (langue == "en") {
-        MessageNoFr = document.createElement("h6")
+        MessageNoFr = document.createElement("h4")
         MessageNoFr.textContent = "Il n'y a pas de commentaires en français pour ce film donc d'autres en anglais sont chargées à leurs places"
         divContainerReviews.appendChild(MessageNoFr)
     }
@@ -93,7 +91,7 @@ function renderReviews(listeReview, langue) {
         datePubli.textContent = `${review.created_at.slice(8,10)}/${review.created_at.slice(5,7)}/${review.created_at.slice(0,4)} à ${review.created_at.slice(11,16)}`
 
         const contentReview = document.createElement("p")
-        contentReview.textContent = review.content
+        contentReview.textContent = review.content.replace(/\*\*/g, '').replace(/<em>/g, '').replace(/<\/em>/g, '')
 
         divContainerReviews.appendChild(datePubli)
         divContainerReviews.appendChild(pictureAuthor)
