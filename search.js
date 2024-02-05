@@ -75,5 +75,6 @@ window.addEventListener("scroll", (e) => {
 	if (scrolledDistance >= scrollableHeight * 0.99) {
 		nbPage ++;
 		getmovieSearch(nameMovie, false);
+        setTimeout((e), 1000)
 	}
 })

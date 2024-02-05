@@ -48,7 +48,8 @@ window.addEventListener("scroll", (e) => {
 	const scrolledDistance = window.scrollY;
 
 	if (scrolledDistance >= scrollableHeight * 0.99) {
-		nbPage ++;
-		getTrendMovies();
+		nbPage ++
+		getTrendMovies()
+		setTimeout((e), 1000)
 	}
 })

@@ -23,7 +23,13 @@ function getReview(movieId, langue) {
         if (reviews.total_results != 0) {
             renderReviews(reviews.results, langue)}
         else {
-            getReview(movieId, "en")
+            if (langue == "fr"){
+                getReview(movieId, "en")}
+            else {
+               const MessageNoReview = document.createElement("h4")
+                MessageNoReview.textContent = "Personne n'a écrit de commentaire."
+                divContainerReviews.appendChild(MessageNoReview)
+            }
         }
     })
     .catch((error) => {
@@ -68,7 +74,7 @@ function renderReviews(listeReview, langue) {
     let MessageNoFr;
     if (langue == "en") {
         MessageNoFr = document.createElement("h4")
-        MessageNoFr.textContent = "Il n'y a pas de commentaires en français pour ce film donc d'autres en anglais sont chargées à leurs places"
+        MessageNoFr.textContent = "Il n'y a pas de commentaires en français pour ce film donc d'autres en anglais sont chargées à leurs places."
         divContainerReviews.appendChild(MessageNoFr)
     }
 
