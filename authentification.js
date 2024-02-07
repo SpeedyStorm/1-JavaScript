@@ -10,9 +10,9 @@ if (idMovie != null) {
 
 export function Initialisation() {
 	if (localStorage.getItem("sessionId") == "undefined" || localStorage.getItem("sessionId") == undefined) {
-		let requestToken = new URLSearchParams(window.location.search).get('request_token')
+		let requestToken = new URLSearchParams(window.location.search).get('request_token') //Je regarde si l'utilisateur c'est déjà connecter auparavant
 		lienConnexion.textContent = "SE CONNECTER"
-		lienConnexion.addEventListener('mouseover', (e) => {
+		lienConnexion.addEventListener('mouseover', (e) => { //Je ne crée le token pour s'identifier que quand l'utilisateur souhaite se co
 			authentification()})
 		if (requestToken != null) {
 			getSessionId(requestToken)}}
@@ -21,7 +21,7 @@ export function Initialisation() {
 		renderDisconnect()}
 }
 
-function authentification() {
+function authentification() { //Créé le bon url pour se connecter
 		getData("https://api.themoviedb.org/3/authentication/token/new")
 		.then((requestToken) => {
 			lienConnexion.setAttribute("href", `https://www.themoviedb.org/authenticate/${requestToken.request_token}?redirect_to=${urlSansRequestToken}`)
@@ -31,7 +31,7 @@ function authentification() {
 		})
 }
 
-function getSessionId(requestToken) {
+function getSessionId(requestToken) { //Et une fois que c'est fait on demande l'id de session
 	postDataSession(requestToken)
 		.then((dataSession) => {
 			sessionId = dataSession.session_id

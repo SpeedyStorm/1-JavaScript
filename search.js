@@ -28,7 +28,7 @@ function getmovieSearch(nameMovie, wantRemove) {
     })
     .catch((error) => {
         console.log(error)
-        alert("La requête n'a pas aboutiiiii")
+        alert("La requête n'a pas abouti")
   	})
 }
 
@@ -79,7 +79,7 @@ window.addEventListener("scroll", (e) => {
 	const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
 	const scrolledDistance = window.scrollY;
 
-	if (scrolledDistance >= scrollableHeight * 0.99) {
+	if (scrolledDistance >= scrollableHeight * 0.90) {
 		nbPage ++;
 		getmovieSearch(nameMovie, false);
         setTimeout((e), 1000)

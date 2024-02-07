@@ -13,7 +13,7 @@ let UtilisateurCo = false
 if (localStorage.getItem("sessionId") != "undefined" && localStorage.getItem("sessionId") != undefined) {
     UtilisateurCo = true}
 
-const movieId = new URLSearchParams(window.location.search).get('id')
+const movieId = new URLSearchParams(window.location.search).get('id') //On récupère l'id
 if (movieId == null) {
     alert("Oups, vous n'auriez pas du atterir ici...")}
 else {
@@ -33,7 +33,7 @@ function getmovieId(movieId) {
 function getReview(movieId, langue) {
     getData(`https://api.themoviedb.org/3/movie/${movieId}/reviews?language=${langue}&page=1'`)
     .then((reviews) => {
-        if (reviews.total_results != 0) {
+        if (reviews.total_results != 0) { //J'essaye de charger les coms en fr, puis en
             renderReviews(reviews.results, langue)}
         else {
             if (langue == "fr"){
@@ -58,7 +58,7 @@ function renderMovie(movie) {
     itemTitle.textContent = movie.title
 
     const imgDOM = document.createElement("img")
-    const imgUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path
+    const imgUrl = "https://image.tmdb.org/t/p/w1280" + movie.poster_path
     imgDOM.setAttribute('src', imgUrl)
 
     const resume = document.createElement("p")
