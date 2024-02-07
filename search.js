@@ -1,7 +1,9 @@
 import {getData} from "./getData.js";
-import { Initialisation } from "./authentification.js";
+import {Initialisation} from "./authentification.js";
+import { idAlea } from "./alea.js";
 
 Initialisation()
+idAlea()
 
 const searchForm = document.querySelector("#search-form")
 searchForm.addEventListener("submit", (e) => {
@@ -22,6 +24,7 @@ function getmovieSearch(nameMovie, wantRemove) {
     getData(`https://api.themoviedb.org/3/search/movie?query=${nameMovie}&include_adult=false&language=fr&page=${nbPage}`)
     .then((movieList) => {
         render(movieList.results, wantRemove)
+        console.log(movieList.results)
     })
     .catch((error) => {
         console.log(error)

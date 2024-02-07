@@ -1,10 +1,11 @@
 import {getData} from "./getData.js";
 import {Initialisation} from "./authentification.js";
+import { idAlea } from "./alea.js";
 
 let nbPage = 1
 getTrendMovies()
 Initialisation()
-
+idAlea()
 
 function getTrendMovies() {
 	getData(`https://api.themoviedb.org/3/movie/popular?language=fr-US&page=${nbPage}`)

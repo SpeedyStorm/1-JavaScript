@@ -11,7 +11,7 @@ if (idMovie != null) {
 export function Initialisation() {
 	if (localStorage.getItem("sessionId") == "undefined" || localStorage.getItem("sessionId") == undefined) {
 		let requestToken = new URLSearchParams(window.location.search).get('request_token')
-		lienConnexion.textContent = "Se connecter"
+		lienConnexion.textContent = "SE CONNECTER"
 		lienConnexion.addEventListener('mouseover', (e) => {
 			authentification()})
 		if (requestToken != null) {
@@ -65,5 +65,6 @@ function disconnection() {
 			.then(response => response.json())
 			.catch(err => console.error(err));
 		localStorage.removeItem('sessionId')
-		Initialisation()});
+		window.location.href = window.location.search
+		});
 }

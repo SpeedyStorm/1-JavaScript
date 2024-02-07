@@ -1,14 +1,17 @@
 import {getData} from "./getData.js"
 import {postDataRating} from "./postData.js"
+import {Initialisation} from "./authentification.js"
+import { idAlea } from "./alea.js"
+
+Initialisation()
+idAlea()
 
 const divContainerMovie = document.querySelector(".container-film")
 const divContainerReviews = document.querySelector(".container-reviews")
+
 let UtilisateurCo = false
 if (localStorage.getItem("sessionId") != "undefined" && localStorage.getItem("sessionId") != undefined) {
     UtilisateurCo = true}
-console.log(localStorage.getItem("sessionId") != "undefined")
-console.log(localStorage.getItem("sessionId") != undefined)
-console.log(UtilisateurCo)
 
 const movieId = new URLSearchParams(window.location.search).get('id')
 if (movieId == null) {
@@ -37,6 +40,7 @@ function getReview(movieId, langue) {
                 getReview(movieId, "en")}
             else {
                const MessageNoReview = document.createElement("h4")
+               MessageNoReview.setAttribute("class", "message")
                 MessageNoReview.textContent = "Personne n'a écrit de commentaire."
                 divContainerReviews.appendChild(MessageNoReview)
             }
@@ -48,6 +52,8 @@ function getReview(movieId, langue) {
 }
 
 function renderMovie(movie) {
+    document.title = "AmbiFilm - " + movie.title
+
     const itemTitle = document.createElement("h3")
     itemTitle.textContent = movie.title
 
@@ -56,15 +62,15 @@ function renderMovie(movie) {
     imgDOM.setAttribute('src', imgUrl)
 
     const resume = document.createElement("p")
-    resume.textContent = movie.overview
+    resume.textContent = "Synopsis : " + movie.overview
 
     const duree = document.createElement("p")
     if (movie.runtime != 0){
-    duree.textContent = `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}min`}
+    duree.textContent = `Durée : ${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}min`}
 
     const dateDeSortie = document.createElement("p")
     if (movie.release_date != ""){
-        dateDeSortie.textContent = `${movie.release_date.slice(8, 10)}/${movie.release_date.slice(5, 7)}/${movie.release_date.slice(0, 4)}`}
+        dateDeSortie.textContent = `Date de sortie : ${movie.release_date.slice(8, 10)}/${movie.release_date.slice(5, 7)}/${movie.release_date.slice(0, 4)}`}
 
     const genre = document.createElement("p")
     movie.genres.forEach((movieGenre) => {
@@ -82,31 +88,37 @@ function renderMovie(movie) {
 
     buttonRating.addEventListener('click', (e) => {
         postDataRating(movieId, inputRating.value)});
+        inputRating.value = ""
 
     divContainerMovie.appendChild(imgDOM)
-    divContainerMovie.appendChild(itemTitle)
-    divContainerMovie.appendChild(duree)
-    divContainerMovie.appendChild(dateDeSortie)
-    divContainerMovie.appendChild(genre)
+    const MovieContenu = document.createElement("div")
+    MovieContenu.setAttribute("id", "movie-contenu")
+    MovieContenu.appendChild(itemTitle)
+    MovieContenu.appendChild(genre)
+    MovieContenu.appendChild(duree)
+    MovieContenu.appendChild(dateDeSortie)
+    MovieContenu.appendChild(resume)
     if (UtilisateurCo == true) {
         textRating.textContent = "Laisser une note sur 10 ?"
-        divContainerMovie.appendChild(textRating)
-        divContainerMovie.appendChild(inputRating)
-        divContainerMovie.appendChild(buttonRating)}
-    else {divContainerMovie.appendChild(textRating)}
-    divContainerMovie.appendChild(resume)
+        MovieContenu.appendChild(textRating)
+        MovieContenu.appendChild(inputRating)
+        MovieContenu.appendChild(buttonRating)}
+    else {MovieContenu.appendChild(textRating)}
+    divContainerMovie.appendChild(MovieContenu)
 }
 
 function renderReviews(listeReview, langue) {
     let MessageNoFr;
     if (langue == "en") {
         MessageNoFr = document.createElement("h4")
+        MessageNoFr.setAttribute("class", "message")
         MessageNoFr.textContent = "Il n'y a pas de commentaires en français pour ce film donc d'autres en anglais sont chargées à leurs places."
         divContainerReviews.appendChild(MessageNoFr)
     }
 
     listeReview.forEach((review) => {
         const divOneReview = document.createElement("div") 
+        divOneReview.setAttribute("class", "one-review")
 
         let pictureAuthor;
         if (review.author_details.avatar_path != null) {
@@ -120,6 +132,7 @@ function renderReviews(listeReview, langue) {
         }
 
         const nameAuthor = document.createElement("p")
+        nameAuthor.setAttribute("class", "name-author")
         nameAuthor.textContent = review.author
 
         const datePubli = document.createElement("p")
@@ -127,10 +140,14 @@ function renderReviews(listeReview, langue) {
 
         const contentReview = document.createElement("p")
         contentReview.textContent = review.content.replace(/\*\*/g, '').replace(/<em>/g, '').replace(/<\/em>/g, '')
+        contentReview.setAttribute("id", "resume")
 
-        divOneReview.appendChild(datePubli)
-        divOneReview.appendChild(pictureAuthor)
-        divOneReview.appendChild(nameAuthor)
+        const authorContent = document.createElement("div")
+        authorContent.setAttribute("id", "author-content")
+        authorContent.appendChild(pictureAuthor)
+        authorContent.appendChild(nameAuthor)
+        authorContent.appendChild(datePubli)
+        divOneReview.appendChild(authorContent)
         divOneReview.appendChild(contentReview)
         divContainerReviews.appendChild(divOneReview)
     })
