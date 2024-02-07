@@ -79,6 +79,7 @@ function renderMovie(movie) {
     genre.textContent = genre.textContent.slice(0, -2)
 
     const textRating = document.createElement("p")
+    textRating.setAttribute("id", "text-rating")
     textRating.textContent = "Connecter-vous pour laisser une note"
     const inputRating = document.createElement("input")
     inputRating.setAttribute("type", "text")

@@ -1,6 +1,6 @@
 import {getData} from "./getData.js";
 import {Initialisation} from "./authentification.js";
-import { idAlea } from "./alea.js";
+import {idAlea} from "./alea.js";
 
 let nbPage = 1
 getTrendMovies()
