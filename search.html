@@ -7,15 +7,33 @@
     <link rel="icon" type="image/png" href="img/favicon.png"/>
     <link href="search.css" rel="stylesheet">
     <script src="search.js" type="module" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-    <a href="index.html">Revenir à l'accueil</a>
-    <form id="search-form" autocomplete="off">
-        <input id="input" type="text" placeholder="Trouver un film" action="submit" autofocus/>
-    </form>
-    <div class="list-container">
-        <ul id="list"></ul>
-    </div>
-    <button id="button-page">Voir plus</button>
+    <header>
+        <h1><a href="index.html" title="lien vers la page d'accueil">AMBIFILM</a></h1>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="search.html" class="recherche">
+                        <input type="recherche" name="recherche" id="recherche" value="" placeholder="Rechercher...">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                </li>
+                <li><a class="lien-connexion">Se connecter</a>  </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form id="search-form" autocomplete="off">
+            <input id="input" type="text" placeholder="Trouver un film" action="submit" autofocus/>
+        </form>
+        <div class="list-container">
+            <ul id="movie-list"></ul>
+        </div>
+    </main>
 </body>
 </html>

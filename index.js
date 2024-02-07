@@ -5,6 +5,7 @@ let nbPage = 1
 getTrendMovies()
 Initialisation()
 
+
 function getTrendMovies() {
 	getData(`https://api.themoviedb.org/3/movie/popular?language=fr-US&page=${nbPage}`)
     .then((moviesList) => {
@@ -25,11 +26,11 @@ function render(movieList) {
     	itemTitle.textContent = movieObject.title
 
     	const imgDOM = document.createElement("img")
-    	const imgUrl = "https://image.tmdb.org/t/p/w500" + movieObject.poster_path
+    	const imgUrl = "https://image.tmdb.org/t/p/w1280" + movieObject.poster_path
     	imgDOM.setAttribute('src', imgUrl)
 		
 		const dateSortie = document.createElement("p")
-		dateSortie.textContent = movieObject.release_date
+		dateSortie.textContent = `${movieObject.release_date.slice(8, 10)}/${movieObject.release_date.slice(5, 7)}/${movieObject.release_date.slice(0, 4)}`
 
 		const lien = document.createElement("a")
 		lien.setAttribute('href', `movie.html?id=${movieObject.id}`)
@@ -47,7 +48,7 @@ window.addEventListener("scroll", (e) => {
 	const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
 	const scrolledDistance = window.scrollY;
 
-	if (scrolledDistance >= scrollableHeight * 0.99) {
+	if (scrolledDistance >= scrollableHeight * 0.90) {
 		nbPage ++
 		getTrendMovies()
 		setTimeout((e), 1000)

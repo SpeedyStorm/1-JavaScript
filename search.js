@@ -1,11 +1,14 @@
 import {getData} from "./getData.js";
+import { Initialisation } from "./authentification.js";
+
+Initialisation()
 
 const searchForm = document.querySelector("#search-form")
 searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
 })
 
-const list = document.querySelector("#list");
+const list = document.querySelector("#movie-list");
 const input = document.querySelector("#input");
 let nbPage = 1
 let nameMovie
@@ -21,7 +24,8 @@ function getmovieSearch(nameMovie, wantRemove) {
         render(movieList.results, wantRemove)
     })
     .catch((error) => {
-        alert("La requête n'a pas abouti")
+        console.log(error)
+        alert("La requête n'a pas aboutiiiii")
   	})
 }
 
@@ -37,13 +41,13 @@ function render(movieList, wantRemove) {
     if (wantRemove == true) {
         renderRemove()}
     if (messageRemove != null) {
-        list.removeChild(messageRemove)
+        document.querySelector("main").removeChild(messageRemove)
     }
     if (movieList.length == 0) {
         const messageNoResult = document.createElement("p")
         messageNoResult.setAttribute('id', "messageNoResult")
-		messageNoResult.textContent = "Aucun résultat"
-        list.appendChild(messageNoResult)
+		messageNoResult.textContent = "Aucun résultat" 
+        document.querySelector("main").appendChild(messageNoResult)
     }
     else {
         movieList.forEach((movieObject) => {
@@ -53,7 +57,7 @@ function render(movieList, wantRemove) {
             itemTitle.textContent = movieObject.title
 
             const imgDOM = document.createElement("img")
-            const imgUrl = "https://image.tmdb.org/t/p/w500" + movieObject.poster_path
+            const imgUrl = "https://image.tmdb.org/t/p/w1280" + movieObject.poster_path
             imgDOM.setAttribute('src', imgUrl)
             
             const lien = document.createElement("a")
