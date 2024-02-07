@@ -1,11 +1,21 @@
-import {getData} from "./getData.js";
+import {getData} from "./getData.js"
+import {postDataRating} from "./postData.js"
 
 const divContainerMovie = document.querySelector(".container-film")
 const divContainerReviews = document.querySelector(".container-reviews")
+let UtilisateurCo = false
+if (localStorage.getItem("sessionId") != "undefined" && localStorage.getItem("sessionId") != undefined) {
+    UtilisateurCo = true}
+console.log(localStorage.getItem("sessionId") != "undefined")
+console.log(localStorage.getItem("sessionId") != undefined)
+console.log(UtilisateurCo)
 
 const movieId = new URLSearchParams(window.location.search).get('id')
-getmovieId(movieId)
-getReview(movieId, "fr")
+if (movieId == null) {
+    alert("Oups, vous n'auriez pas du atterir ici...")}
+else {
+    getmovieId(movieId)
+    getReview(movieId, "fr")}
 
 function getmovieId(movieId) {
     getData(`https://api.themoviedb.org/3/movie/${movieId}?language=fr`)
@@ -62,11 +72,28 @@ function renderMovie(movie) {
     })
     genre.textContent = genre.textContent.slice(0, -2)
 
+    const textRating = document.createElement("p")
+    textRating.textContent = "Connecter-vous pour laisser une note"
+    const inputRating = document.createElement("input")
+    inputRating.setAttribute("type", "text")
+    inputRating.setAttribute("placeholder", "8.5")
+    const buttonRating = document.createElement("button")
+    buttonRating.textContent = "Valider"
+
+    buttonRating.addEventListener('click', (e) => {
+        postDataRating(movieId, inputRating.value)});
+
     divContainerMovie.appendChild(imgDOM)
     divContainerMovie.appendChild(itemTitle)
     divContainerMovie.appendChild(duree)
     divContainerMovie.appendChild(dateDeSortie)
     divContainerMovie.appendChild(genre)
+    if (UtilisateurCo == true) {
+        textRating.textContent = "Laisser une note sur 10 ?"
+        divContainerMovie.appendChild(textRating)
+        divContainerMovie.appendChild(inputRating)
+        divContainerMovie.appendChild(buttonRating)}
+    else {divContainerMovie.appendChild(textRating)}
     divContainerMovie.appendChild(resume)
 }
 

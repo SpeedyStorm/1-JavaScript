@@ -1,4 +1,5 @@
-import {getData} from "./getData.js";
+import {getData} from "./getData.js"
+import { postDataRating, postDataSession } from "./postData.js"
 
 let lienConnexion = document.querySelector(".lien-connexion")
 let sessionId
@@ -31,29 +32,15 @@ function authentification() {
 }
 
 function getSessionId(requestToken) {
-	createSessionId(requestToken)
+	postDataSession(requestToken)
 		.then((dataSession) => {
 			sessionId = dataSession.session_id
 			localStorage.setItem("sessionId", sessionId)
 			window.location.href = urlSansRequestToken
 		})
 		.catch((error) => {
-				alert("La requête n'a pas abouti")
+			alert("La requête n'a pas abouti")
 		})
-}
-
-async function createSessionId(requestToken) {
-		const options = {
-				method: 'POST',
-				headers: {
-					accept: 'application/json',
-					'content-type': 'application/json',
-					Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2U0ZWY3NWM3ZGRkMDYzMDUwMDgyOTUyZDUyYzU2MyIsInN1YiI6IjY1YjIxODk5MWM2MzI5MDE2YjkzNWM4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.p8GldhwVDjEYFE1AFTzvQEk2hTaMmUANTWFBcZnvuYg'
-				},
-				body: JSON.stringify({request_token: requestToken})
-			};
-			const data = await fetch('https://api.themoviedb.org/3/authentication/session/new', options)
-			return data.json()
 }
 
 function renderDisconnect() {
