@@ -1,3 +1,5 @@
+# Consignes :
+
 Mini-Projet : Cinéma
 
 Projet à réaliser seul.
@@ -71,3 +73,20 @@ Authentification (25 pts)
     L'utilisateur doit pouvoir se connecter avec son compte TMDB (5 pts)
     Une fois connecté, l'utilisateur doit le rester à la réouverture du navigateur (5 pts)
     Une fois connecté, l'utilisateur doit pouvoir ajouter des reviews (10 pts)
+
+# Rendu final :
+
+Étant donné que l'objectif de ce projet était de travailler sur le JavaScript, nous avions l'autorisation de réutilisé le CSS de notre premier projet de développement Web. C'est pour cela qu'il y a une ressemblance visuelle sur certaines parties avec mon autre projet comme pour le header et les "articles".
+
+Accueil :
+
+![image](https://github.com/SpeedyStorm/1-JavaScript/assets/154496951/ded2136a-bae2-4234-9ce5-21bf3ad5fe6e)
+
+Page de recherche :
+
+![image](https://github.com/SpeedyStorm/1-JavaScript/assets/154496951/86876859-42e1-4f27-af2d-ad484e4242c7)
+
+Détails d'un film :
+
+![image](https://github.com/SpeedyStorm/1-JavaScript/assets/154496951/6ab54bb2-56d7-4f2b-a579-4f7cb41b8695)
+![image](https://github.com/SpeedyStorm/1-JavaScript/assets/154496951/716954cc-455d-4abc-8d7a-6f851b81f222)
