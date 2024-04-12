@@ -56,7 +56,7 @@ function disconnection() {
 			headers: {
 			  accept: 'application/json',
 			  'content-type': 'application/json',
-			  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2U0ZWY3NWM3ZGRkMDYzMDUwMDgyOTUyZDUyYzU2MyIsInN1YiI6IjY1YjIxODk5MWM2MzI5MDE2YjkzNWM4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.p8GldhwVDjEYFE1AFTzvQEk2hTaMmUANTWFBcZnvuYg'
+			  Authorization: "Mettre la clé d'API ici"
 			},
 			body: JSON.stringify({session_id: sessionId})
 		  };
