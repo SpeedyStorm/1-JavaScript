@@ -1,6 +1,6 @@
 Mini-Projet : Cinéma
 
-Projet à réaliser seul ou en binôme.
+Projet à réaliser seul.
 Un cinéma d'un petit village isolé souhaite proposer des films à l'affiche pour attirer plus de jeunes des villages alentours. 
 
 Pour atteindre cet objectif, les gérants du cinéma décident de vous missionner pour créer une application permettant de demander aux clients, via un site internet, quels films seront projetés chaque jour en salle.
