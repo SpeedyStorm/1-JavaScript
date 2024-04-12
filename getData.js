@@ -4,7 +4,7 @@ export async function getData(url, methodUse = 'GET') {
       	headers: {
         	accept: "application/json",
         	Authorization:
-        	"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2U0ZWY3NWM3ZGRkMDYzMDUwMDgyOTUyZDUyYzU2MyIsInN1YiI6IjY1YjIxODk5MWM2MzI5MDE2YjkzNWM4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.p8GldhwVDjEYFE1AFTzvQEk2hTaMmUANTWFBcZnvuYg",
+        	"Mettre la clé d'API ici",
       	},
     };
   
